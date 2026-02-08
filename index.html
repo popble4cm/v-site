@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Greeting</title>
+
+<style>
+body{
+    font-family: monospace;
+    font-size:16px;
+    text-align:center;
+    padding-top:80px;
+    color: #e17db3;
+    background-color: #c6e2b2;
+}
+
+button{
+    margin-top:20px;
+    padding:10px 20px;
+    font-family: monospace;
+    cursor:pointer;
+    background:#fff6f0;
+    color:#e17db3;
+    border:none;
+    border-radius:6px;
+}
+
+/* cosplay button colors */
+.gojo { background:#988fc5; color:#fff6f0; }
+.hisoka { background:#e17db3; color:#fff6f0; }
+.inosuke { background:#75ba99; color:#fff6f0; }
+
+/* cursor */
+.cursor{
+    display:inline-block;
+    width:10px;
+    background:black;
+    margin-left:3px;
+    animation: blink 1s infinite;
+}
+@keyframes blink{
+    0%,50%,100%{opacity:1;}
+    25%,75%{opacity:0;}
+}
+
+/* shake */
+@keyframes shake{
+  0% { transform: translate(1px, 1px); }
+  25% { transform: translate(-2px, 0px); }
+  50% { transform: translate(2px, 1px); }
+  75% { transform: translate(-1px, -1px); }
+  100% { transform: translate(1px, -2px); }
+}
+.shake{ animation: shake 0.4s infinite; }
+</style>
+</head>
+
+<body>
+
+<!-- STEP 1 -->
+<div id="step1">
+    <h3>⋆.˚ Enter your name *+:｡.</h3>
+    <input type="text" id="username">
+    <button onclick="startTyping()">Submit</button>
+    <div id="output"></div>
+</div>
+
+<!-- STEP 2 -->
+<div id="step2" style="display:none;">
+    <h3>Who do you wanna cosplay as? ◝(ᵔᗜᵔ)◜</h3>
+    <button class="gojo" onclick="chooseCosplay('Gojo Satoru','pic1.png')">Gojo Satoru</button><br>
+    <button class="hisoka" onclick="chooseCosplay('Hisoka Morou','pic2.png')">Hisoka Morou</button><br>
+    <button class="inosuke" onclick="chooseCosplay('Inosuke Hashibira','pic3.png')">Inosuke Hashibira</button>
+</div>
+
+<!-- STEP 3 -->
+<div id="step3" style="display:none;">
+    <img id="cosplayImage" width="200"><br>
+    <div id="resultText"></div>
+</div>
+
+<!-- STEP 4 -->
+<div id="giftStep" style="display:none;">
+    <img id="giftBox" src="giftbox.png" width="200"><br>
+    <div id="giftMessage"></div>
+    <div id="downloadArea"></div>
+</div>
+
+<script>
+
+function startTyping(){
+    const name = document.getElementById("username").value || "Guest";
+    const text = "(˶ˆᗜˆ˵) Sawasdee kaaaaa " + name + " aka Nong Paul";;
+    const output = document.getElementById("output");
+
+    output.innerHTML = '<span id="text"></span><span class="cursor"></span>';
+    const span = document.getElementById("text");
+
+    let i=0;
+    function type(){
+        if(i<text.length){
+            span.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(type,50);  /* typing speed */
+        }else{
+            const btn=document.createElement("button");
+            btn.innerHTML="Continue";
+            btn.onclick=()=>{ step1.style.display="none"; step2.style.display="block"; };
+            output.appendChild(document.createElement("br"));
+            output.appendChild(btn);
+        }
+    }
+    type();
+}
+
+function chooseCosplay(cosplay,img){
+    step2.style.display="none";
+    step3.style.display="block";
+    cosplayImage.src=img;
+
+    const name=username.value || "Guest";
+    const text='Today '+name+' is cosplaying '+cosplay+'. Popble sees your efforts and will give '+name+' a gift (¬`‸´¬)';
+
+    resultText.innerHTML='<span id="type2"></span><span class="cursor"></span>';
+    const span=document.getElementById("type2");
+
+    let i=0;
+    function type(){
+        if(i<text.length){
+            span.innerHTML+=text.charAt(i);
+            i++;
+            setTimeout(type,50);
+        }else{
+            const btn=document.createElement("button");
+            btn.innerHTML="Claim gift 🎁";
+            btn.onclick=openGift;
+            resultText.appendChild(document.createElement("br"));
+            resultText.appendChild(btn);
+        }
+    }
+    type();
+}
+
+function openGift(){
+    step3.style.display="none";
+    giftStep.style.display="block";
+
+    giftBox.classList.add("shake");
+
+    setTimeout(()=>{
+        giftBox.classList.remove("shake");
+        giftBox.src="pic4.png";
+
+        const msg="Thank you for always talking with me. I really appreciate having you around (..◜ᴗ◝..) Here's your Thai Keroppi keyboard naaaa";
+        giftMessage.innerHTML='<span id="type3"></span><span class="cursor"></span>';
+        const span=document.getElementById("type3");
+
+        let j=0;
+        function typeMsg(){
+            if(j<msg.length){
+                span.innerHTML+=msg.charAt(j);
+                j++;
+                setTimeout(typeMsg,40);
+            }else{
+                downloadArea.innerHTML=
+                '<br><a href="#"><button>Download</button></a>'; 
+                /* PUT YOUR DOWNLOAD LINK INSIDE href="" */
+            }
+        }
+        typeMsg();
+    },2000);
+}
+</script>
+
+</body>
+</html>
