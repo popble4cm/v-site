@@ -10,8 +10,8 @@ body{
     font-size:16px;
     text-align:center;
     padding-top:80px;
-    color: #e17db3;
-    background-color: #c6e2b2;
+    color:#e17db3;
+    background-color:#c6e2b2;
 }
 
 button{
@@ -81,16 +81,15 @@ button{
 
 <!-- STEP 4 -->
 <div id="giftStep" style="display:none;">
-    <img id="giftBox" src="giftbox.png" width="500"><br>
+    <img id="giftBox" src="giftbox.png" width="200"><br>
     <div id="giftMessage"></div>
     <div id="downloadArea"></div>
 </div>
 
 <script>
-
 function startTyping(){
     const name = document.getElementById("username").value || "Guest";
-    const text = "(˶ˆᗜˆ˵) Sawasdee kaaaaa " + name + " aka Nong Paul";;
+    const text = "(˶ˆᗜˆ˵) Sawasdee kaaaaa " + name + " aka Nong Paul";
     const output = document.getElementById("output");
 
     output.innerHTML = '<span id="text"></span><span class="cursor"></span>';
@@ -99,9 +98,9 @@ function startTyping(){
     let i=0;
     function type(){
         if(i<text.length){
-            span.innerHTML += text.charAt(i);
+            span.innerHTML+=text.charAt(i);
             i++;
-            setTimeout(type,50);  /* typing speed */
+            setTimeout(type,50);
         }else{
             const btn=document.createElement("button");
             btn.innerHTML="Continue";
@@ -150,6 +149,7 @@ function openGift(){
     setTimeout(()=>{
         giftBox.classList.remove("shake");
         giftBox.src="pic4.png";
+        giftBox.width = 500;   <!-- ⭐ THIS MAKES pic4 BIGGER -->
 
         const msg="Thank you for always talking with me even though sometime being jai raii. I really appreciate having you around (..◜ᴗ◝..) Here's your Thai Keroppi keyboard naaaa";
         giftMessage.innerHTML='<span id="type3"></span><span class="cursor"></span>';
@@ -162,8 +162,9 @@ function openGift(){
                 j++;
                 setTimeout(typeMsg,40);
             }else{
-                downloadArea.innerHTML=
-                '<br><a href="https://drive.google.com/drive/folders/1B9U0-MGcPePxTrrL0HN2POSZn7ZFJH47?usp=sharing/"><button>Download</button></a>'; 
+                downloadArea.innerHTML =
+                '<br><a href="https://drive.google.com/drive/folders/1B9U0-MGcPePxTrrL0HN2POSZn7ZFJH47?usp=sharing" target="_blank">' +
+                '<button>Download</button></a>';
             }
         }
         typeMsg();
@@ -173,6 +174,3 @@ function openGift(){
 
 </body>
 </html>
-
-
-
