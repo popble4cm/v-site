@@ -148,8 +148,10 @@ function openGift(){
     giftBox.classList.add("shake");
 
     setTimeout(()=>{
-        giftBox.classList.remove("shake");
-        giftBox.src="pic4.png" width="500";
+    giftBox.classList.remove("shake");
+    giftBox.src = "pic4.png";
+    giftBox.width = 500;   // make image bigger
+}, 500);
 
         const msg="Thank you for always talking with me. I really appreciate having you around (..◜ᴗ◝..) Here's your Thai Keroppi keyboard naaaa";
         giftMessage.innerHTML='<span id="type3"></span><span class="cursor"></span>';
@@ -162,9 +164,9 @@ function openGift(){
                 j++;
                 setTimeout(typeMsg,40);
             }else{
-                downloadArea.innerHTML=
-                '<br><a href="https://drive.google.com/drive/folders/1B9U0-MGcPePxTrrL0HN2POSZn7ZFJH47?usp=sharing"><button>Download</button></a>'; 
-                /* PUT YOUR DOWNLOAD LINK INSIDE href="" */
+                downloadArea.innerHTML =
+'<br><a href="https://drive.google.com/drive/folders/1B9U0-MGcPePxTrrL0HN2POSZn7ZFJH47?usp=sharing" target="_blank" rel="noopener">' +
+'<button>Download</button></a>';
             }
         }
         typeMsg();
@@ -174,4 +176,5 @@ function openGift(){
 
 </body>
 </html>
+
 
