@@ -68,9 +68,9 @@ button{
 <!-- STEP 2 -->
 <div id="step2" style="display:none;">
     <h3>Who do you wanna cosplay as? ◝(ᵔᗜᵔ)◜</h3>
-    <button class="gojo" onclick="chooseCosplay('Gojo Satoru','pic1.png')">Gojo Satoru</button><br>
-    <button class="hisoka" onclick="chooseCosplay('Hisoka Morou','pic2.png')">Hisoka Morou</button><br>
-    <button class="inosuke" onclick="chooseCosplay('Inosuke Hashibira','pic3.png')">Inosuke Hashibira</button>
+    <button class="gojo" onclick="chooseCosplay('Gojo Satoru','pic1.jpg')">Gojo Satoru</button><br>
+    <button class="hisoka" onclick="chooseCosplay('Hisoka Morou','pic2.jpg')">Hisoka Morou</button><br>
+    <button class="inosuke" onclick="chooseCosplay('Inosuke Hashibira','pic3.jpg')">Inosuke Hashibira</button>
 </div>
 
 <!-- STEP 3 -->
@@ -148,10 +148,8 @@ function openGift(){
     giftBox.classList.add("shake");
 
     setTimeout(()=>{
-    giftBox.classList.remove("shake");
-    giftBox.src = "pic4.png";
-    giftBox.width = 500;   // make image bigger
-}, 500);
+        giftBox.classList.remove("shake");
+        giftBox.src="pic4.jpg";
 
         const msg="Thank you for always talking with me. I really appreciate having you around (..◜ᴗ◝..) Here's your Thai Keroppi keyboard naaaa";
         giftMessage.innerHTML='<span id="type3"></span><span class="cursor"></span>';
@@ -176,5 +174,3 @@ function openGift(){
 
 </body>
 </html>
-
-
