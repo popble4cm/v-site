@@ -10,15 +10,27 @@ body{
     font-family: monospace;
     font-size:16px;
     text-align:center;
-    padding:100px 40px; /* ← top/bottom | left/right */
+    padding-top:40px;
     color:#e17db3;
     background-color:#c6e2b2;
 }
 
-/* container margin from screen */
-body > div{
+/* mobile centered container */
+.container{
     max-width:600px;
-    margin:auto;
+    margin:0 auto;
+    padding:0 16px;
+}
+
+/* responsive images */
+img{
+    max-width:100%;
+    height:auto;
+    opacity:0;
+    transition:opacity 1.9s ease;
+}
+img.show{
+    opacity:1;
 }
 
 button{
@@ -59,37 +71,13 @@ button{
   100% { transform: translate(1px, -2px); }
 }
 .shake{ animation: shake 0.4s infinite; }
-
-/* REAL OPEN BOX animation */
-@keyframes openBox{
-  0%   { transform: scale(1) rotate(0deg); }
-  40%  { transform: scale(1.1) rotate(-5deg); }
-  70%  { transform: scale(1.15) rotate(5deg); }
-  100% { transform: scale(1.2) rotate(0deg); }
-}
-.open{
-  animation: openBox 0.8s ease forwards;
-}
-
-/* image fade in */
-.fade{
-    opacity:0;
-    transition:opacity 2s ease;
-}
-.show{
-    opacity:1;
-}
-
-/* responsive */
-img{
-    max-width:90%;
-    height:auto;
-}
 </style>
 </head>
 
 <body>
+<div class="container">
 
+<!-- STEP 1 -->
 <div id="step1">
     <h3>⋆.˚ Enter your name *+:｡.</h3>
     <input type="text" id="username">
@@ -97,6 +85,7 @@ img{
     <div id="output"></div>
 </div>
 
+<!-- STEP 2 -->
 <div id="step2" style="display:none;">
     <h3>Who do you wanna cosplay as? ◝(ᵔᗜᵔ)◜</h3>
     <button class="gojo" onclick="chooseCosplay('Gojo Satoru','pic1.png')">Gojo Satoru</button><br>
@@ -104,19 +93,22 @@ img{
     <button class="inosuke" onclick="chooseCosplay('Inosuke Hashibira','pic3.png')">Inosuke Hashibira</button>
 </div>
 
+<!-- STEP 3 -->
 <div id="step3" style="display:none;">
-    <img id="cosplayImage" class="fade" width="200"><br>
+    <img id="cosplayImage" width="200"><br>
     <div id="resultText"></div>
 </div>
 
+<!-- STEP 4 -->
 <div id="giftStep" style="display:none;">
-    <img id="giftBox" src="giftbox.png" class="fade" width="200"><br>
+    <img id="giftBox" src="giftbox.png" width="200"><br>
     <div id="giftMessage"></div>
     <div id="downloadArea"></div>
 </div>
 
-<script>
+</div>
 
+<script>
 function startTyping(){
     const name = document.getElementById("username").value || "Guest";
     const text = "(˶ˆᗜˆ˵) Sawasdee kaaaaa " + name + " a.k.a. Nong Paul";
@@ -145,8 +137,10 @@ function startTyping(){
 function chooseCosplay(cosplay,img){
     step2.style.display="none";
     step3.style.display="block";
+
+    cosplayImage.classList.remove("show");
     cosplayImage.src=img;
-    cosplayImage.classList.add("show");
+    setTimeout(()=>cosplayImage.classList.add("show"),50);
 
     const name=username.value || "Guest";
     const text='Today '+name+' is cosplaying '+cosplay+'. Popble sees your efforts and will give '+name+' a gift (¬`‸´¬)';
@@ -174,18 +168,18 @@ function chooseCosplay(cosplay,img){
 function openGift(){
     step3.style.display="none";
     giftStep.style.display="block";
-    giftBox.classList.add("show","shake");
+
+    giftBox.classList.add("shake");
 
     setTimeout(()=>{
         giftBox.classList.remove("shake");
-        giftBox.classList.add("open");
 
-        setTimeout(()=>{
-            giftBox.src="pic4.png";
-            giftBox.width=400;
-        },600);
+        giftBox.classList.remove("show");
+        giftBox.src="pic4.png";
+        giftBox.width = 500;
+        setTimeout(()=>giftBox.classList.add("show"),50);
 
-        const msg="Thank you for always talking with me even though you're sometimes jai rai to meee. I appreciate having you around mak (..◜ᴗ◝..) Here's your Thai Keroppi keycaps naaa";
+        const msg="Thank you for always talking with me even though you're sometimes jai rai to meee. I appreciate having you around mak (..◜ᴗ◝..) Here's your Thai Keroppi keyboard naaa";
         giftMessage.innerHTML='<span id="type3"></span><span class="cursor"></span>';
         const span=document.getElementById("type3");
 
@@ -202,12 +196,9 @@ function openGift(){
             }
         }
         typeMsg();
-
     },2000);
 }
 </script>
 
 </body>
 </html>
-
-
