@@ -144,7 +144,7 @@ function chooseCosplay(cosplay,img){
     setTimeout(()=>cosplayImage.classList.add("show"),50);
 
     const name=username.value || "Guest";
-    const text='Today '+name+' is cosplaying '+cosplay+'. Popble sees your efforts and will give '+name+' a gift (¬`‸´¬)';
+    const text='Today '+name+' is cosplaying '+cosplay+'. Popble sees your efforts so Popble will give '+name+' a reward (¬`‸´¬)';
 
     resultText.innerHTML='<span id="type2"></span><span class="cursor"></span>';
     const span=document.getElementById("type2");
@@ -157,7 +157,7 @@ function chooseCosplay(cosplay,img){
             setTimeout(type,50);
         }else{
             const btn=document.createElement("button");
-            btn.innerHTML="Claim gift 🎁";
+            btn.innerHTML="Claim reward 🎁";
             btn.onclick=openGift;
             resultText.appendChild(document.createElement("br"));
             resultText.appendChild(btn);
@@ -180,7 +180,7 @@ function openGift(){
         giftBox.width = 500;
         setTimeout(()=>giftBox.classList.add("show"),50);
 
-        const msg="Thank you for always talking with me even though you're sometimes jai rai to meee😒 I appreciate having you around mak🥹 Here's your Thai Keroppi keyboard naaa (..◜ᴗ◝..)";
+        const msg="Thank you for always talking with me even though you're sometimes jai rai and kuan teen to meee😒 You make me happy in ways you probably don’t even notice. I hope this brings you a little happiness too🥹 Here's your Thai Keroppi keyboard naaa (..◜ᴗ◝..)";
         giftMessage.innerHTML='<span id="type3"></span><span class="cursor"></span>';
         const span=document.getElementById("type3");
 
@@ -203,6 +203,7 @@ function openGift(){
 
 </body>
 </html>
+
 
 
 
