@@ -15,14 +15,12 @@ body{
     background-color:#c6e2b2;
 }
 
-/* mobile centered container */
 .container{
     max-width:600px;
     margin:0 auto;
     padding:0 16px;
 }
 
-/* responsive images */
 img{
     max-width:100%;
     height:auto;
@@ -50,7 +48,7 @@ button{
 .hisoka { background:#e17db3; color:#fff6f0; }
 .inosuke { background:#75ba99; color:#fff6f0; }
 
-/* cursor */
+/* cursor blink */
 .cursor{
     display:inline-block;
     width:10px;
@@ -62,16 +60,6 @@ button{
     0%,50%,100%{opacity:1;}
     25%,75%{opacity:0;}
 }
-
-/* shake */
-@keyframes shake{
-  0% { transform: translate(1px, 1px); }
-  25% { transform: translate(-2px, 0px); }
-  50% { transform: translate(2px, 1px); }
-  75% { transform: translate(-1px, -1px); }
-  100% { transform: translate(1px, -2px); }
-}
-.shake{ animation: shake 0.4s infinite; }
 </style>
 </head>
 
@@ -102,7 +90,7 @@ button{
 
 <!-- STEP 4 -->
 <div id="giftStep" style="display:none;">
-    <img id="giftBox" src="giftbox.png" width="200"><br>
+    <img id="giftBox" width="200"><br>
     <div id="giftMessage"></div>
     <div id="downloadArea"></div>
 </div>
@@ -170,44 +158,30 @@ function openGift(){
     step3.style.display="none";
     giftStep.style.display="block";
 
-    giftBox.classList.add("shake");
+    giftBox.classList.remove("show");
+    giftBox.src="pic4.png";
+    giftBox.width = 500;
+    setTimeout(()=>giftBox.classList.add("show"),50);
 
-    setTimeout(()=>{
-        giftBox.classList.remove("shake");
+    const msg="Thank you for always talking with me even though you're sometimes jai rai and kuan teen to meee😒 You make me happy in ways you probably don’t even notice. I hope this brings you a little happiness too🥹 Here's your Thai Keroppi keycaps design naaa (..◜ᴗ◝..)";
+    giftMessage.innerHTML='<span id="type3"></span><span class="cursor"></span>';
+    const span=document.getElementById("type3");
 
-        giftBox.classList.remove("show");
-        giftBox.src="pic4.png";
-        giftBox.width = 500;
-        setTimeout(()=>giftBox.classList.add("show"),50);
-
-        const msg="Thank you for always talking with me even though you're sometimes jai rai and kuan teen to meee😒 You make me happy in ways you probably don’t even notice. I hope this brings you a little happiness too🥹 Here's your Thai Keroppi keycaps design naaa (..◜ᴗ◝..)";
-        giftMessage.innerHTML='<span id="type3"></span><span class="cursor"></span>';
-        const span=document.getElementById("type3");
-
-        let j=0;
-        function typeMsg(){
-            if(j<msg.length){
-                span.innerHTML+=msg.charAt(j);
-                j++;
-                setTimeout(typeMsg,40);
-            }else{
-                downloadArea.innerHTML =
-                '<br><a href="https://drive.google.com/drive/folders/1B9U0-MGcPePxTrrL0HN2POSZn7ZFJH47?usp=sharing" target="_blank">' +
-                '<button>Download✨</button></a>';
-            }
+    let j=0;
+    function typeMsg(){
+        if(j<msg.length){
+            span.innerHTML+=msg.charAt(j);
+            j++;
+            setTimeout(typeMsg,40);
+        }else{
+            downloadArea.innerHTML =
+            '<br><a href="https://drive.google.com/drive/folders/1B9U0-MGcPePxTrrL0HN2POSZn7ZFJH47?usp=sharing" target="_blank">' +
+            '<button>Download✨</button></a>';
         }
-        typeMsg();
-    },2000);
+    }
+    typeMsg();
 }
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
